@@ -1,0 +1,3706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
+<title>Документация по серверу OpenTelega 1.0</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(4);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Документация по серверу OpenTelega 1.0</h1>
+<div id="toc">
+  <div id="toctitle">Содержание</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>В этом документе рассмотрены HTTP-запросы для работы с сервером OpenTelega, даны примеры cURL-запросов, а также приведены возможные ответы сервера на рассматриваемые HTTP-запросы.
+Приведены примеры cURL-запросов для использования в клиенте.
+Даны рекомендации для создания безопасных коммуникационных систем.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_краткий_обзор_сервера_opentelega">Краткий обзор сервера OpenTelega</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>OpenTelega — это сервер обмена файлами с открытым исходным кодом, написанный на веб-фреймворке <em>django</em>.
+Простая структура сервера обеспечивает лёгкоcть написания собственных коммуникационных приложений, таких как чаты, мессенджеры, а также ботов к ним.</p></div>
+<div class="paragraph"><p>Взаимодействие с сервером осуществляется через команды, отправляемые на сервер по протоколу <em>HTTP</em>.
+
+Поддерживается вывод в трёх форматах: <em>CSV</em>, <em>XML</em>, <em>JSON</em> (по умолчанию), что позволяет разрабатывать на основе данного сервера свои приложения без использования стороннего программного обеспечения во всех современных средствах разработки ПО.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_команды_сервера">Команды сервера</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>На сервере можно создать одного администратора и сколько угодно пользователей.
+При первоначальной настройке сервера создаётся администратор со случайно сгенерированным логином и паролем.
+Логин и пароль у администратора регистрозависимые.
+После первоначальной настройки администратор может создавать пользователей.
+Команды отправляются на сервер посредством HTTP(S)-запросов.
+Все аргументы (параметры) команды передаются через метод <em>POST</em>, а название команды передаётся через метод <em>GET</em>.</p></div>
+<div class="sect2">
+<h3 id="_команды_администратора">Команды администратора</h3>
+<div class="paragraph"><p>Функции администратора предназначены для управления сервером.
+Пара логин-пароль администратора и пользователей находятся в разных таблицах (моделях).
+Таким образом, логин и пароль администратора нельзя использовать в командах пользователя.</p></div>
+<div class="sect3">
+<h4 id="_первоначальная_настройка_сервера">Первоначальная настройка сервера</h4>
+<div class="paragraph"><p>Команда вызывается для установки значений параметров в БД, а также генерации аутентифицирующей информации администратора.
+В БД сервера помечается то, что сервер был инициализирован, таким образом, второй раз инициализировать сервер нельзя.
+Команда возвращает список из одного элемента, содержащего логин и пароль администратора.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 1. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/initialize_server/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 2. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">AdminUsername</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminPassword</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 3. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">PermissionDenied</p></td>
+<td align="left" valign="top"><p class="table">Сервер уже был инициализирован</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">PermissionDenied</p></td>
+<td align="left" valign="top"><p class="table">Ошибка чтения/записи опций</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/initialize_server<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"AdminUsername": "<span style="color: #FF0000">64wyygtm</span>"<span style="color: #990000">,</span> "AdminPassword": "<span style="color: #FF0000">louq0nfigrtwowa4</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_списка_опций">Получение списка опций</h4>
+<div class="paragraph"><p>Подробнее об опциях см. в главе <a href="#server-options">Опции</a>.</p></div>
+<div class="paragraph"><p>Команда возвращает список с названиями и значениями открытых опций.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 4. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/get_options_list/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 5. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Name</p></td>
+<td align="left" valign="top"><p class="table">Название опции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Value</p></td>
+<td align="left" valign="top"><p class="table">Значение опции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 6. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_примеры_curl_запросов">Примеры cURL запросов</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=louq0nfigrtwowa4"</span> -F <span style="color: #FF0000">"outputFormat=xml"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/get_options_list<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">&lt;root&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;element&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;Name&gt;</span></span>FILE_SIZE_LIMIT<span style="font-weight: bold"><span style="color: #0000FF">&lt;/Name&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;Value&gt;</span></span>1073741824<span style="font-weight: bold"><span style="color: #0000FF">&lt;/Value&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;/element&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;element&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;Name&gt;</span></span>LIMIT_MESSAGES_FOR_QUERY<span style="font-weight: bold"><span style="color: #0000FF">&lt;/Name&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;Value&gt;</span></span>1000<span style="font-weight: bold"><span style="color: #0000FF">&lt;/Value&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;/element&gt;</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">&lt;/root&gt;</span></span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Запрос (заведомо неправильные логин и пароль, вывод в формате <em>CSV</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=123"</span> -F <span style="color: #FF0000">"adminPassword=456"</span> -F <span style="color: #FF0000">"outputFormat=csv"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/get_options_list<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content">
+<pre><code>"StatusCode"
+"WrongCredentials"</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_установка_значения_опции">Установка значения опции</h4>
+<div class="paragraph"><p>Подробнее об опциях см. в главе <a href="#server-options">Опции сервера</a>.</p></div>
+<div class="paragraph"><p>На сервере изменяется значение уже созданной открытой опции.
+Возвращает код завершения данной операции (см. <a href="#server-errors">Коды завершения операции на сервере</a>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 7. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/change_option/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">optionName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название опции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">optionValue</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Значение опции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 8. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">StatusCode</p></td>
+<td align="left" valign="top"><p class="table">Код завершения операции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 9. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует аргумент названия опции или значения опции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetOption</p></td>
+<td align="left" valign="top"><p class="table">Опциия отсутствует или не является открытой</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_примеры_curl_запросов_2">Примеры cURL запросов</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=louq0nfigrtwowa4"</span> -F <span style="color: #FF0000">"optionName=FILE_SIZE_LIMIT"</span> -F <span style="color: #FF0000">"optionValue=10737"</span> -F <span style="color: #FF0000">"outputFormat=xml"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/change_option<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">&lt;root&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;element&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;StatusCode&gt;</span></span>OK<span style="font-weight: bold"><span style="color: #0000FF">&lt;/StatusCode&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;/element&gt;</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">&lt;/root&gt;</span></span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>, опции не существует в БД)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=louq0nfigrtwowa4"</span> -F <span style="color: #FF0000">"optionName=BlahBlahBlah"</span> -F <span style="color: #FF0000">"optionValue=12345"</span> -F <span style="color: #FF0000">"outputFormat=xml"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/change_option<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">&lt;root&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;element&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;StatusCode&gt;</span></span>CouldNotGetOption<span style="font-weight: bold"><span style="color: #0000FF">&lt;/StatusCode&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;/element&gt;</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">&lt;/root&gt;</span></span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_смена_пароля_администратора">Смена пароля администратора</h4>
+<div class="paragraph"><p>Команда меняет пароль администратора.
+Возвращает код завершения данной операции (см. <a href="#server-errors">Коды завершения операции на сервере</a>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 10. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/change_admin_password/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">newAdminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Новый пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 11. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">StatusCode</p></td>
+<td align="left" valign="top"><p class="table">Код завершения операции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 12. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">PermissionDenied</p></td>
+<td align="left" valign="top"><p class="table">Хеш пароля или соль являются открытыми опциями</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetNewPassword</p></td>
+<td align="left" valign="top"><p class="table">Не указан новый пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_2">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=louq0nfigrtwowa4"</span> -F <span style="color: #FF0000">"newAdminPassword=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/change_admin_password<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"StatusCode": "<span style="color: #FF0000">OK</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_регистрация_пользователя">Регистрация пользователя</h4>
+<div class="paragraph"><p>На сервере регистрируется пользователь с заданным логином.
+Логины пользователей — регистронезависимые.
+Сервер возвращает список из одного элемента со случайно-сгенерированным паролем пользователя.
+Допустимый набор символов, используемый в логине регистрируемого пользователя: "abcdefghijklmnopqrstuvwxyz0123456789-_"</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 13. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/register_user/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">usernameForRegistration</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 14. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">UserPassword</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 15. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Не указан логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">InvalidParameters</p></td>
+<td align="left" valign="top"><p class="table">Логин содержит недопустимые символы</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AlreadyRegistredUser</p></td>
+<td align="left" valign="top"><p class="table">Пользователь с таким логином уже существует</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_3">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> -F <span style="color: #FF0000">"usernameForRegistration=user"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/register_user<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"UserPassword": "<span style="color: #FF0000">c44pitgq3ucysibf</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_сброс_пароля_пользователя">Сброс пароля пользователя</h4>
+<div class="paragraph"><p>На сервере заново перегенерируется пароль уже созданного пользователя.
+Сервер возвращает список из одного элемента со случайно-сгенерированным паролем пользователя.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 16. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/reset_user_password/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">usernameForResetPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 17. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">UserPassword</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 18. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Не указан логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UserNotFound</p></td>
+<td align="left" valign="top"><p class="table">Пользователь с таким логином не найден</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_4">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>CSV</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> -F <span style="color: #FF0000">"usernameForResetPassword=user"</span> -F <span style="color: #FF0000">"outputFormat=csv"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/reset_user_password<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content">
+<pre><code>"UserPassword"
+"080y/iikl1hsvsks"</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_удаление_пользователя">Удаление пользователя</h4>
+<div class="paragraph"><p>На сервере удаляется пользователь.
+Команда возвращает код завершения данной операции (см. <a href="#server-errors">Коды завершения операции на сервере</a>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 19. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/delete_user/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">usernameForDelete</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 20. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">StatusCode</p></td>
+<td align="left" valign="top"><p class="table">Код завершения операции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 21. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Не указан логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UserNotFound</p></td>
+<td align="left" valign="top"><p class="table">Пользователь с таким логином не найден</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_5">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> -F <span style="color: #FF0000">"usernameForDelete=user"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/delete_user<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"StatusCode": "<span style="color: #FF0000">OK</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_списка_пользователей">Получение списка пользователей</h4>
+<div class="paragraph"><p>Возвращает список пользователей.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 22. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/list_all_users/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 23. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Username</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 24. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_6">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/list_all_users<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"Username": "<span style="color: #FF0000">user</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Username": "<span style="color: #FF0000">user2</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Username": "<span style="color: #FF0000">user3</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_списка_файлов">Получение списка файлов</h4>
+<div class="paragraph"><p>Возвращает список всех файлов.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 25. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/list_all_files/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 26. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Id</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Date</p></td>
+<td align="left" valign="top"><p class="table">Дата загрузки</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Sender</p></td>
+<td align="left" valign="top"><p class="table">Логин отправителя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Recipients</p></td>
+<td align="left" valign="top"><p class="table">Логины получателей, разделённые запятой</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Hashsum</p></td>
+<td align="left" valign="top"><p class="table">Хеш-сумма</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Algorithm</p></td>
+<td align="left" valign="top"><p class="table">Алгоритм подсчёта хеш-суммы</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Size</p></td>
+<td align="left" valign="top"><p class="table">Размер файла в байтах</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 27. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">GetFileListError</p></td>
+<td align="left" valign="top"><p class="table">Ошибка получения списка файлов</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_7">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/list_all_files<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"Id": "<span style="color: #FF0000">1</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 04:51:28.525526+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user2</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">355cdfacb40614cf818dec74edba11a1210270aad292fbf929b8db0a8802639585ef88ccda809c19ff6b6c436989063058217bd07680faa677f7200541d307dd</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Id": "<span style="color: #FF0000">2</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 04:52:52.646161+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user3</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">fb94b9e7017f73dfac4bba199f88a425ea71dcc5f2c6a4184ef76cc7645da53d6fef2060fa4867842c6e2ba9ca539253ad86e7aeb98d23995d645bf55cc4164f</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Id": "<span style="color: #FF0000">3</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 04:53:48.250649+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user2, user3</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">ed927b682f20e37c51c72157623d81f4d10a0d9c2ff022aa5887cc9cc523074f59370c1edacf95e64e8f2d06d983942fffdbb129c0625a0eb983c14a6a413a20</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Id": "<span style="color: #FF0000">4</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 04:54:11.454020+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user3</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">ad2d0e3b233f0f0873dd6ced399f9083d0cc0fdda1bbb30dc1650408a21d0f3aae3d9a2f6dd8bbdce2d671921c4fdd56230503ed0ec75804096d98d2f9e2029b</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin_download_file">Скачивание файла</h4>
+<div class="paragraph"><p>Скачивает файл при помощи аутентифицирующих данных администратора.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 28. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/admin_download_file/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">targetId</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 29. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Не указан идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileNotFound</p></td>
+<td align="left" valign="top"><p class="table">Файл с указанным идентификатором не найден в БД</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_8">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -D headers<span style="color: #990000">.</span>txt -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> -F <span style="color: #FF0000">"targetId=2"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/admin_download_file<span style="color: #990000">/</span> -o file<span style="color: #990000">.</span>bin</tt></pre></div></div>
+<div class="paragraph"><p>Команда запишет файл (или код ошибки) в <code>file.bin</code>, а в <code>headers.txt</code> можно посмотреть код HTTP-ответа:</p></div>
+<div class="listingblock">
+<div class="title">HTTP-заголовки ответа</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cat headers<span style="color: #990000">.</span>txt
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.0</span> <span style="color: #993399">200</span> OK
+Date<span style="color: #990000">:</span> Wed<span style="color: #990000">,</span> <span style="color: #993399">16</span> Aug <span style="color: #993399">2017</span> <span style="color: #993399">15</span><span style="color: #990000">:</span><span style="color: #993399">53</span><span style="color: #990000">:</span><span style="color: #993399">54</span> GMT
+Server<span style="color: #990000">:</span> WSGIServer<span style="color: #990000">/</span><span style="color: #993399">0.2</span> CPython<span style="color: #990000">/</span><span style="color: #993399">3.6</span><span style="color: #990000">.</span><span style="color: #993399">2</span>
+Content-Type<span style="color: #990000">:</span> text/html<span style="color: #990000">;</span> <span style="color: #009900">charset</span><span style="color: #990000">=</span>utf-<span style="color: #993399">8</span>
+Content-Disposition<span style="color: #990000">:</span> attachment<span style="color: #990000">;</span> <span style="color: #009900">filename</span><span style="color: #990000">=</span><span style="color: #993399">2</span>
+X-Frame-Options<span style="color: #990000">:</span> SAMEORIGIN
+Content-Length<span style="color: #990000">:</span> <span style="color: #993399">155648</span></tt></pre></div></div>
+<div class="paragraph"><p>Видим, что код ответа HTTP - <code>200</code>, значит файл скачан в <code>file.bin</code>.</p></div>
+<div class="paragraph"><p>Рассмотрим другую ситуацию, когда по какой-либо причине операция завершилась с ошибкой.</p></div>
+<div class="listingblock">
+<div class="title">HTTP-заголовки ответа</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cat headers<span style="color: #990000">.</span>txt
+HTTP<span style="color: #990000">/</span><span style="color: #993399">1.0</span> <span style="color: #993399">400</span> Bad Request
+Date<span style="color: #990000">:</span> Wed<span style="color: #990000">,</span> <span style="color: #993399">16</span> Aug <span style="color: #993399">2017</span> <span style="color: #993399">15</span><span style="color: #990000">:</span><span style="color: #993399">57</span><span style="color: #990000">:</span><span style="color: #993399">44</span> GMT
+Server<span style="color: #990000">:</span> WSGIServer<span style="color: #990000">/</span><span style="color: #993399">0.2</span> CPython<span style="color: #990000">/</span><span style="color: #993399">3.6</span><span style="color: #990000">.</span><span style="color: #993399">2</span>
+Content-Type<span style="color: #990000">:</span> text/html<span style="color: #990000">;</span> <span style="color: #009900">charset</span><span style="color: #990000">=</span>utf-<span style="color: #993399">8</span>
+X-Frame-Options<span style="color: #990000">:</span> SAMEORIGIN
+Content-Length<span style="color: #990000">:</span> <span style="color: #993399">32</span></tt></pre></div></div>
+<div class="paragraph"><p>Здесь код ответа равен <code>400</code>, тогда в файл скачался код ошибки.
+Открываем файл и видим ошибку, возникшую на сервере.</p></div>
+<div class="listingblock">
+<div class="title">Просмотр кода ошибки</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cat file<span style="color: #990000">.</span>bin
+<span style="color: #990000">[</span>{<span style="color: #FF0000">"StatusCode"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"FileNotFound"</span>}<span style="color: #990000">]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_удаление_файла">Удаление файла</h4>
+<div class="paragraph"><p>Удаляет файл с сервера.
+Команда возвращает код завершения данной операции (см. <a href="#server-errors">Коды завершения операции на сервере</a>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 30. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/delete_file/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">targetId</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор удаляемого файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 31. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">StatusCode</p></td>
+<td align="left" valign="top"><p class="table">Код завершения операции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 32. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">Не указан идентификатор удаляемого файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileNotFound</p></td>
+<td align="left" valign="top"><p class="table">Файл с таким идентификатором не найден</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_9">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> -F <span style="color: #FF0000">"targetId=3"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/delete_file<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"StatusCode": "<span style="color: #FF0000">OK</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_очистка_бд_и_удаление_ненужных_файлов_из_директории_загрузки">Очистка БД и удаление ненужных файлов из директории загрузки</h4>
+<div class="paragraph"><p>Удаляет записи о файлах из БД, если соответствующих файлов нет в ФС и удаляет файлы в ФС из директории загрузки файлов, если нет соответствующих записей в БД.
+При большой загрузке сервера загружаемые пользователями файлы могут сохраняться в ФС, но не сохраняться в БД.
+По разным причинам может случаться и обратная ситуация, когда файл может сохраняться в БД, но не сохраняться в ФС.
+В обоих случаях, скачать такие файлы методами сервера <em>OpenTelega</em> невозможно, поэтому написана такая функция, дабы не приходилось лазить в media-директорию, через ssh-консоль для обслуживания сервера.
+Возвращает список из одного элемента, содержащий идентификаторы файлов: успешно удалённых из БД; с возникшей ошибкой во время удаления из БД; успешно удалённых из ФС; с возникшей ошибкой во время удаления из ФС.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 33. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/clean_media_directory/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 34. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">SuccessfullDeletedFilesFromDb</p></td>
+<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, успешно удалённые из БД</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">DeleteFilesFromDbError</p></td>
+<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, с возникшей ошибкой во время удаления из БД</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">SuccessfullDeletedFilesFromFs</p></td>
+<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, успешно удалённые из ФС</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">DeleteFilesFromFsError</p></td>
+<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, с возникшей ошибкой во время удаления из ФС</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 35. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_10">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/clean_media_directory<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"SuccessfullDeletedFilesFromDb": "<span style="color: #FF0000">1; 4</span>"<span style="color: #990000">,</span> "DeleteFilesFromDbError": ""<span style="color: #990000">,</span> "SuccessfullDeletedFilesFromFs": "<span style="color: #FF0000">123; 456</span>"<span style="color: #990000">,</span> "DeleteFilesFromFsError": ""<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_версии_сервера">Получение версии сервера</h4>
+<div class="paragraph"><p>Возвращает список из одного элемента, содержащего версию сервера (текущая: <code>1.0</code>).
+.Аргументы команды</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/admin_get_version/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminUserName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">adminPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 36. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Version</p></td>
+<td align="left" valign="top"><p class="table">Номер версии</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 37. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">Учётная запись администратора отсутствует в системе (скорее всего, сервер не инициализирован)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_11">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"adminUserName=64wyygtm"</span> -F <span style="color: #FF0000">"adminPassword=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/admin_get_version<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"Version": "<span style="color: #FF0000">1.0</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_команды_пользователя">Команды пользователя</h3>
+<div class="paragraph"><p>Во всех командах пользователя используются логин и пароль пользователя.</p></div>
+<div class="sect3">
+<h4 id="_загрузка_файла_на_сервер">Загрузка файла на сервер</h4>
+<div class="paragraph"><p>Закачивает файл на сервер.
+Возвращает идентификатор загруженного файла.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 38. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/fileserver/upload_file/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">recipients</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логины адресатов, указанные через точку с запятой</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">uploadedFile</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Файл для загрузки сервером</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 39. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">FileId</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор файла</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 40. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NoRecipients</p></td>
+<td align="left" valign="top"><p class="table">Отсутствуют адресаты</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongRecipients</p></td>
+<td align="left" valign="top"><p class="table">Один или несколько логинов адресатов не найдены в БД</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UploadFileError</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при получении файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetOption</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при получении опции максимального размера загружаемого файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileSizeExceedsLimit</p></td>
+<td align="left" valign="top"><p class="table">Размер файла превышает допустимый предел</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">DbWorkingError</p></td>
+<td align="left" valign="top"><p class="table">Ошибка сохранения файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_12">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"uploadedFile=@file.bin"</span> -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=123"</span> -F <span style="color: #FF0000">"recipients=user2;user;user3"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/upload_file<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"FileId": "<span style="color: #FF0000">12</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_списка_файлов_2">Получение списка файлов</h4>
+<div class="paragraph"><p>Возвращает список файлов, адресованных пользователю.
+Максимальное количество возвращаемых файлов в списке определяется опцией <code>LIMIT_MESSAGES_FOR_QUERY</code>.
+Также можно указать значение идентификатора, начиная с которого будет формироваться список.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 41. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/get_file_list/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">startFromId</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Вывести файлы, идентификаторы которых больше указанного</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 42. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Id</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Date</p></td>
+<td align="left" valign="top"><p class="table">Дата загрузки</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Sender</p></td>
+<td align="left" valign="top"><p class="table">Логин отправителя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Recipients</p></td>
+<td align="left" valign="top"><p class="table">Логины получателей, разделённые запятой</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Hashsum</p></td>
+<td align="left" valign="top"><p class="table">Хеш-сумма</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Algorithm</p></td>
+<td align="left" valign="top"><p class="table">Алгоритм подсчёта хеш-суммы</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Size</p></td>
+<td align="left" valign="top"><p class="table">Размер файла в байтах</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 43. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">InvalidParameters</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при преобразовании значения параметра startFromId в целое число</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">GetFileListError</p></td>
+<td align="left" valign="top"><p class="table">Ошибка получения списка файлов</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_13">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/get_file_list<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"Id": "<span style="color: #FF0000">7</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 17:49:27.921752+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user2, user3, user</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">545cf0e52039a339b006c05bcd99196aad27178da4c9a9ea80cb13cde230efd6e195d3d8c64ab5438ff509981a2bcd78865d142d8fde3b1990f54b4914173ed7</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Id": "<span style="color: #FF0000">8</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 17:49:29.945411+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user2, user3, user</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">1ee3780d7bacc4ab867e99ae5875326dc2e826bb156c97f6bfd6edfdadcbbe7c1609d421e8d7b1e69a29af1d227b7311937c0887e0be941e8f4ba67f8be38e83</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">155648</span>"<span style="color: #990000">},</span> <span style="color: #990000">{</span>"Id": "<span style="color: #FF0000">9</span>"<span style="color: #990000">,</span> "Date": "<span style="color: #FF0000">2017-08-16 18:34:24.915857+00:00</span>"<span style="color: #990000">,</span> "Sender": "<span style="color: #FF0000">user</span>"<span style="color: #990000">,</span> "Recipients": "<span style="color: #FF0000">user2, user, user3</span>"<span style="color: #990000">,</span> "Hashsum": "<span style="color: #FF0000">99438f681a8b74e6953cdacc151a0874ed0d86d1d7160f8e18372d61d104f0640fdef02df1e7a66b7a1e86d2c3dc7d2e26e01e3e53da685f836d0e164fe3265b</span>"<span style="color: #990000">,</span> "Algorithm": "<span style="color: #FF0000">sha512</span>"<span style="color: #990000">,</span> "Size": "<span style="color: #FF0000">32</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_скачивание_файла">Скачивание файла</h4>
+<div class="paragraph"><p>Функция, аналогичная <a href="#admin_download_file">функции скачивания файла администратором</a>, за исключением того что пользователь может скачать только те файлы, адресатом которых он является.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 44. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/download_file_by_id/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">id</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 45. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NoFileId</p></td>
+<td align="left" valign="top"><p class="table">Не указан идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileNotFound</p></td>
+<td align="left" valign="top"><p class="table">Файл с указанным идентификатором не найден в БД, либо пользователь не является адресатом указанного файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_14">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Скачивание файла и заголовков <em>HTTP</em></div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -D headers<span style="color: #990000">.</span>txt -X POST -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=12345"</span> -F <span style="color: #FF0000">"id=6"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/download_file_by_id<span style="color: #990000">/</span> -o file<span style="color: #990000">.</span>bin</tt></pre></div></div>
+<div class="paragraph"><p>Подробнее о заголовках <em>HTTP</em> и скачивании файла см. в <a href="#admin_download_file">функции скачивания файла администратором</a>.</p></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_смена_пароля">Смена пароля</h4>
+<div class="paragraph"><p>Команда меняет пароль пользователя.
+Возвращает код завершения данной операции (см. <a href="#server-errors">Коды завершения операции на сервере</a>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 46. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/change_user_password/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">newPassword</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Новый пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 47. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">StatusCode</p></td>
+<td align="left" valign="top"><p class="table">Код завершения операции</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 48. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetNewPassword</p></td>
+<td align="left" valign="top"><p class="table">Не указан новый пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_15">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=123"</span> -F <span style="color: #FF0000">"newPassword=1"</span> -F <span style="color: #FF0000">"outputFormat=xml"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/change_user_password<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">&lt;root&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;element&gt;</span></span>
+        <span style="font-weight: bold"><span style="color: #0000FF">&lt;StatusCode&gt;</span></span>OK<span style="font-weight: bold"><span style="color: #0000FF">&lt;/StatusCode&gt;</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">&lt;/element&gt;</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">&lt;/root&gt;</span></span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_количества_файлов_для_адресата">Получение количества файлов для адресата</h4>
+<div class="paragraph"><p>Возвращает список из одного элемента, содержащего количество файлов, адресатом которого является пользователь.
+Функция может оказаться полезной, если у адресата достаточно много файлов (по умолчанию, в списке файлов выводятся не более <code>1000</code> (опция <code>LIMIT_MESSAGES_FOR_QUERY</code>).</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 49. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/get_files_count/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 50. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">FilesCount</p></td>
+<td align="left" valign="top"><p class="table">Количество файлов</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 51. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">InvalidParameters</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при получении количества файлов</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_16">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос (вывод в формате <em>XML</em>)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/get_files_count<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"FilesCount": "<span style="color: #FF0000">2</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_получение_версии_сервера_2">Получение версии сервера</h4>
+<div class="paragraph"><p>Возвращает список из одного элемента, содержащего версию сервера (текущая: <code>1.0</code>).
+Используется пара логин-пароль пользователя.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 52. Аргументы команды</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Метод</th>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Обязательное поле</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GET</p></td>
+<td align="left" valign="top"><p class="table">fileserver/user_get_version/</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Название команды</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">userName</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Логин пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">password</p></td>
+<td align="left" valign="top"><p class="table">Да</p></td>
+<td align="left" valign="top"><p class="table">Пароль пользователя</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">POST</p></td>
+<td align="left" valign="top"><p class="table">outputFormat</p></td>
+<td align="left" valign="top"><p class="table">Нет</p></td>
+<td align="left" valign="top"><p class="table">Формат вывода ответа сервера</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 53. Аргументы ответа сервера</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Аргумент</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Version</p></td>
+<td align="left" valign="top"><p class="table">Номер версии</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 54. Возможные ошибки</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Ошибка</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль администратора</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_пример_curl_запроса_17">Пример cURL запроса</h5>
+<div class="listingblock">
+<div class="title">Запрос</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>curl -X POST -F <span style="color: #FF0000">"userName=user"</span> -F <span style="color: #FF0000">"password=1"</span> http<span style="color: #990000">://</span><span style="color: #993399">127.0</span><span style="color: #990000">.</span><span style="color: #993399">0.1</span><span style="color: #990000">:</span><span style="color: #993399">8000</span>/fileserver/user_get_version<span style="color: #990000">/</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Ответ</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">[{</span>"Version": "<span style="color: #FF0000">1.0</span>"<span style="color: #990000">}]</span></tt></pre></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_приложения">Приложения</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="server-errors">Коды завершения операции на сервере</h3>
+<div class="paragraph"><p>В случае ошибок выполнения команд пользователя выводится список из одного элемента, в котором указывается код завершения операции.
+Все коды завершения операции, кроме кода успешного выполнения команды, выводятся с 400-м кодом состояния HTTP.
+Код успешного выполнения операции выводится с 200-м кодом состояния HTTP.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 55. Список кодов завершения операции</caption>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<thead>
+<tr>
+<th align="left" valign="top">Код завершения операции</th>
+<th align="left" valign="top">HTTP-код</th>
+<th align="left" valign="top">Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">OK</p></td>
+<td align="left" valign="top"><p class="table">200</p></td>
+<td align="left" valign="top"><p class="table">Успешное завершение операции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NoCredentials</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Отсутствует логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongCredentials</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Неправильные логин или пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">InvalidParameters</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Параметры комманды имеют неверный вид</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UploadFileError</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при загрузке файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileSizeExceedsLimit</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Размер загружаемого файла превышает допустимое значение</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">WrongRecipients</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Не найдены адресаты исходного файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NoRecipients</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Не указаны адресаты</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">FileNotFound</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Файл не найден</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">GetFileListError</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при получения списка файлов</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NoFileId</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Не указан идентификатор файла</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetNewPassword</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Не указан новый пароль</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AdminDidNotCreated</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Администратор не инициализирован</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">CouldNotGetOption</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Ошибка чтения/записи опции</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UserNotFound</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Пользователь не найден</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">PermissionDenied</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Доступ запрещён</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">NotEnoughArguments</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Недостаточно аргументов в команде</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">AlreadyRegistredUser</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Пользователь с таким именем уже зарегистрирован</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">DbWorkingError</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Ошибка при работе с БД</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">UnknownError</p></td>
+<td align="left" valign="top"><p class="table">400</p></td>
+<td align="left" valign="top"><p class="table">Неизвестная ошибка</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 56. Примеры ответов с кодами завершения операции</caption>
+<col width="20%" />
+<col width="80%" />
+<thead>
+<tr>
+<th align="left" valign="top">Формат</th>
+<th align="left" valign="top">Ответ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">CSV</p></td>
+<td align="left" valign="top"><p class="table">"StatusCode"</p>
+<p class="table">"WrongCredentials"</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">XML</p></td>
+<td align="left" valign="top"><p class="table">&lt;root&gt;</p>
+<p class="table">    &lt;element&gt;</p>
+<p class="table">        &lt;StatusCode&gt;WrongCredentials&lt;/StatusCode&gt;</p>
+<p class="table">    &lt;/element&gt;</p>
+<p class="table">&lt;/root&gt;</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">JSON</p></td>
+<td align="left" valign="top"><p class="table">[{"StatusCode": "NoCredentials"}]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-options">Опции сервера</h3>
+<div class="paragraph"><p>Опции сервера реализованы для настройки сервера через HTTP-запросы.
+Опции сервера хранятся в БД и могут быть доступными (открытая опция) или недоступными для настройки посредством HTTP-запросов (закрытая опция).
+В закрытых опциях хранятся логин и пароль администратора, а также опция, обозначающая произведённую начальную настройку сервера.
+Названия и значения опций являются строками.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Таблица 57. Сводная таблица опций</caption>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<thead>
+<tr>
+<th align="left" valign="top">Название</th>
+<th align="left" valign="top">Описание</th>
+<th align="left" valign="top">Тип</th>
+<th align="left" valign="top">Значение по умолчанию</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">FILE_SIZE_LIMIT</p></td>
+<td align="left" valign="top"><p class="table">Максимальный размер загружаемого файла (в байтах)</p></td>
+<td align="left" valign="top"><p class="table">Открытая</p></td>
+<td align="left" valign="top"><p class="table">1073741824</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">LIMIT_MESSAGES_FOR_QUERY</p></td>
+<td align="left" valign="top"><p class="table">Максимальное количество сообщений в скачиваемом списке</p></td>
+<td align="left" valign="top"><p class="table">Открытая</p></td>
+<td align="left" valign="top"><p class="table">1000</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">is_initialized</p></td>
+<td align="left" valign="top"><p class="table">Наличие переменной обозначает факт произведённой первоначальной настройки сервера</p></td>
+<td align="left" valign="top"><p class="table">Закрытая</p></td>
+<td align="left" valign="top"><p class="table"><code>Не определено</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">admin_login</p></td>
+<td align="left" valign="top"><p class="table">Логин администратора</p></td>
+<td align="left" valign="top"><p class="table">Закрытая</p></td>
+<td align="left" valign="top"><p class="table"><code>Не определено</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">admin_hashed_password</p></td>
+<td align="left" valign="top"><p class="table">Хешированный пароль администратора</p></td>
+<td align="left" valign="top"><p class="table">Закрытая</p></td>
+<td align="left" valign="top"><p class="table"><code>Не определено</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">admin_salt</p></td>
+<td align="left" valign="top"><p class="table">Соль, используемая при проверки пароля администратора</p></td>
+<td align="left" valign="top"><p class="table">Закрытая</p></td>
+<td align="left" valign="top"><p class="table"><code>Не определено</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_безопасность_использования_сервера_opentelega">Безопасность использования сервера OpenTelega</h3>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Внимание</div>
+</td>
+<td class="content">Любая информация, передаваемая через протокол <em>HTTP</em>, может быть прочитана или изменена третьей стороной (злоумышленником).
+Для предотвращения данной уязвимости рекомендуется использовать <em>HTTPS</em> протокол с использованием соответствующего сертификата (подписанного УЦ <span class="footnote"><br />[Удостоверяющий центр]<br /></span>, или другим доверенным источником).
+Данная  рекомендация не относится к тем случаям, в которых безопасность обмена информацией обеспечивается архитектурой сети (например, <em>i2p</em>).
+В таких случаях можно использовать протокол <em>HTTP</em>.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Внимание</div>
+</td>
+<td class="content">Для снижения эффективности применения злоумышленником уязвимостей веб-серверов (например, <em>apache</em> или <em>nginx</em>) рекомендуется использовать HTTP-аутентификацию на веб-сервере.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Внимание</div>
+</td>
+<td class="content">При написании собственных мессенджеров рекомендуется реализовать сквозное шифрование, поскольку даже при использовании безопасного протокола <em>HTTPS</em> злоумышленник, в теории, может просматривать содержимое на сервере.
+Если Вы не специалист в области написания криптографических приложений, рекомендуется использовать уже готовые программы/библиотеки.
+Автор данного документа предпочитает использовать <em>GnuPG</em> или <em>OpenSSL</em>.
+В данных программах используются надёжные и проверенные алгоритмы шифрования, а также безопасные функции генерации ключа нужной длины по паролю, введённому с клавиатуры пользователем.</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faq">FAQ</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_где_можно_применить_данный_сервер">Где можно применить данный сервер?</h3>
+<div class="paragraph"><p>Спектр применения самый разный: коммуникационные приложения, роботы, аналогичные Telegram-ботам, для личного использования, роботы для устройств "Интернета вещей".
+Преимущество данного приложения перед аналогами — <em>OpenTelega</em> не требует номера телефона при регистрации, не собирает никаких данных, не показывает рекламу, в теории, можно написать клиент данного сервера под любую платформу, начиная с <em>DOS</em> и заканчивая современными операционными системами <em>Windows</em>, <em>Linux</em>, <em>Mac</em> и др.
+Плюсом также может служить то, что данный сервер относительно просто поднять в анонимных сетях, таких как, например, <em>Tor</em> или <em>I2P</em>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_как_посмотреть_список_платформ_под_которые_можно_написать_клиент">Как посмотреть список платформ, под которые можно написать клиент?</h3>
+<div class="paragraph"><p>В данном документе приведены примеры для <em>curl</em> в качестве программы, отправляющей HTTP-запросы на сервер.
+На <a href="https://curl.haxx.se/download.html">https://curl.haxx.se/download.html</a> находятся ссылки, по которым можно скачать себе <em>curl</em>.
+Также не стоит забывать, что <em>curl</em> далеко не единственная программа, позволяющая отправлять HTTP-запросы.
+Например, под <em>.NET</em> существует целых три стандартных библиотеки для работы с <em>HTTP</em>:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+HttpWebRequest
+</p>
+</li>
+<li>
+<p>
+WebClient
+</p>
+</li>
+<li>
+<p>
+HttpClient
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Автор данного документа предпочитает использовать <em>curl</em>, поскольку в данной программе очень просто указывать дополнительные параметры, вроде proxy-сервера или сертификатов <em>SSL</em>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_как_определить_завершилась_ли_команда_с_ошибкой_или_без_неё">Как определить, завершилась ли команда с ошибкой или без неё?</h3>
+<div class="paragraph"><p>Нужно смотреть в заголовки ответа <em>HTTP</em>.
+Любая команда, которая была успешно выполнена на сервере, возвращает код <code>200</code>, с ошибкой — код <code>400</code>.
+Пример cURL-запроса с получением кода <em>HTTP</em> приведён в <a href="#admin_download_file">функции скачивания файла администратором</a>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_у_меня_сервер_вернул_код_em_http_em_code_500_code_что_это_значит">У меня сервер вернул код <em>HTTP</em> <code>500</code>. Что это значит?</h3>
+<div class="paragraph"><p>Проверьте адрес команды (параметр <em>GET</em>, в конце там должен быть "/" — слеш)</p></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-08-16 22:03:30 MSK
+</div>
+</div>
+</body>
+</html>
