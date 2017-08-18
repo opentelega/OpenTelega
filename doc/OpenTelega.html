@@ -727,7 +727,7 @@ install: function(toclevels) {
 }
 
 }
-asciidoc.install(4);
+asciidoc.install(3);
 /*]]>*/
 </script>
 </head>
@@ -773,7 +773,7 @@ asciidoc.install(4);
 Таким образом, логин и пароль администратора нельзя использовать в командах пользователя.</p></div>
 <div class="sect3">
 <h4 id="_первоначальная_настройка_сервера">Первоначальная настройка сервера</h4>
-<div class="paragraph"><p>Команда вызывается для установки значений параметров в БД, а также генерации аутентифицирующей информации администратора.
+<div class="paragraph"><p>Команда вызывается для установки значений параметров в БД, а также генерации логина и пароля администратора.
 В БД сервера помечается то, что сервер был инициализирован, таким образом, второй раз инициализировать сервер нельзя.
 Команда возвращает список из одного элемента, содержащего логин и пароль администратора.</p></div>
 <div class="tableblock">
@@ -2034,7 +2034,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 <div class="sect3">
 <h4 id="admin_download_file">Скачивание файла</h4>
-<div class="paragraph"><p>Скачивает файл при помощи аутентифицирующих данных администратора.</p></div>
+<div class="paragraph"><p>Скачивает файл при помощи логина и пароля администратора.</p></div>
 <div class="tableblock">
 <table rules="all"
 width="100%"
@@ -2396,11 +2396,11 @@ cellspacing="0" cellpadding="4">
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">SuccessfullDeletedFilesFromFs</p></td>
-<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, успешно удалённые из ФС</p></td>
+<td align="left" valign="top"><p class="table">Имена файлов, разделённые точкой с запятой, успешно удалённые из ФС</p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">DeleteFilesFromFsError</p></td>
-<td align="left" valign="top"><p class="table">Идентификаторы файлов, разделённые точкой с запятой, с возникшей ошибкой во время удаления из ФС</p></td>
+<td align="left" valign="top"><p class="table">Имена файлов, разделённые точкой с запятой, с возникшей ошибкой во время удаления из ФС</p></td>
 </tr>
 </tbody>
 </table>
@@ -3389,6 +3389,56 @@ http://www.gnu.org/software/src-highlite -->
 <h2 id="_приложения">Приложения</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_запуск_сервера_в_тестовом_окружении">Запуск сервера в тестовом окружении</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Клонируем репозиторий сервера:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>git clone https<span style="color: #990000">:</span>//github<span style="color: #990000">.</span>com/opentelega/OpenTelega<span style="color: #990000">.</span>git</tt></pre></div></div>
+</li>
+<li>
+<p>
+Переходим в папку сервера:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cd OpenTelega</tt></pre></div></div>
+</li>
+<li>
+<p>
+Выполняем миграцию
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>python manage<span style="color: #990000">.</span>py makemigrations fileserver
+python manage<span style="color: #990000">.</span>py migrate</tt></pre></div></div>
+</li>
+<li>
+<p>
+Запускаем сервер
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>python manage<span style="color: #990000">.</span>py runserver</tt></pre></div></div>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
 <h3 id="server-errors">Коды завершения операции на сервере</h3>
 <div class="paragraph"><p>В случае ошибок выполнения команд пользователя выводится список из одного элемента, в котором указывается код завершения операции.
 Все коды завершения операции, кроме кода успешного выполнения команды, выводятся с 400-м кодом состояния HTTP.
@@ -3699,7 +3749,7 @@ HttpClient
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-16 22:03:30 MSK
+Last updated 2017-08-18 07:41:02 MSK
 </div>
 </div>
 </body>
