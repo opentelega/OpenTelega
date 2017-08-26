@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseBadRequest
 from enum import Enum
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 class ResponseType(Enum):
     OK = 0
@@ -25,7 +26,7 @@ class ResponseType(Enum):
     UnknownError = 19
 
 def ResponseByType(responseType, request):
-    header = ("StatusCode", )
+    header = OutputTableHeader.StatusCode.value
     value = ((responseType.name,),)
     output = GenerateOutput(header, value, request)
     if (responseType == ResponseType.OK):

@@ -38,5 +38,15 @@ def hashsum_of_file(hash_sum_type, f):
 	else:
 		raise Exception("Can not get hash algorithm")
 
+def hashsum_of_data(hash_sum_type, data):
+	if (hash_sum_type.name in hashlib.algorithms_available):
+		h = hashlib.new(hash_sum_type.name)
+		h.update(data)
+		return h.hexdigest()
+	elif (hash_sum_type == HashSumType.no_hash):
+		return "0"
+	else:
+		raise Exception("Can not get hash algorithm")
+
 def get_salted_password(salt, password):
     return hashsumOfPassword(HashSumType.sha512, salt, password)

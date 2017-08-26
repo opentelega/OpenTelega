@@ -9,6 +9,7 @@ from fileserver.UserWorker import GetUserFromPostRequest, \
 from fileserver.ResponseWorker import ResponseByType, ResponseType
 
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 @csrf_exempt
 def upload_file(request):
@@ -31,7 +32,7 @@ def upload_file(request):
         if (saveUploadedFileCode != ResponseType.OK):
             return ResponseByType(saveUploadedFileCode, request)
 
-        header = ("FileId",)
+        header = OutputTableHeader.UploadFile.value
         data = ((str(fileId),),)
         return HttpResponse(GenerateOutput(header, data, request))
     except Exception:
