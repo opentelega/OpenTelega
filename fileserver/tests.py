@@ -45,12 +45,3 @@ class TestScenarioJson(TestCase):
 class TestScenarioCsv(TestCase):
     def test_default(self):
         TestScenario(ResponseFormat.csv)
-
-    # def test_xml(self):
-    #   TestScenario(ResponseFormat.xml)
-
-    # def test_json(self):
-    #   TestScenario(ResponseFormat.json)
-
-    # def test_csv(self):
-    #   TestScenario(ResponseFormat.csv)

@@ -8,3 +8,6 @@ class OutputTableHeader(Enum):
     ResetUserPassword = ("UserPassword", )
     ListAllUsers = ("Username", )
     UploadFile = ("FileId", )
+    GetFileList = ("Id", "Date", "Sender", "Recipients", "Hashsum", \
+        "Algorithm", "Size")
+    GetNumberOfFiles = ("FilesCount",)

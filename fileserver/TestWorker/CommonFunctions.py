@@ -18,5 +18,5 @@ def IsCorrectStatusCodeResponse(response, statusCode, format=None):
         decodedStatusCode = decodedStatusCodeTable[0][0]
         assert(ResponseType[decodedStatusCode] == statusCode)
         return True
-    except KeyError:
+    except Exception:
         return False

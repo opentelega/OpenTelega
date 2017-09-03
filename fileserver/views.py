@@ -64,7 +64,7 @@ def get_files_count(request):
         if (getFilesCountCode != ResponseType.OK):
             return ResponseByType(getFilesCountCode, request)
 
-        header = ("FilesCount",)
+        header = OutputTableHeader.GetNumberOfFiles.value
         data = ((str(count),),)
         return HttpResponse(GenerateOutput(header, data, request))
     except Exception:

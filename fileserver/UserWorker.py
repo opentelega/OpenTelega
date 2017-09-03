@@ -10,6 +10,7 @@ from fileserver.HashCalc import HashSumType, hashsum, hashsumOfPassword, \
 from fileserver.ResponseWorker import ResponseType
 from fileserver.OptionWorker import GetOptionValue, PublicOptionKey
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 def generate_rand():
     return str(base64.b64encode(os.urandom(128)).lower(), "utf-8")
@@ -24,8 +25,7 @@ def report_bad_file(fileId):
     pass
 
 def GetCsvFileList(files, request=None):
-    headers = ("Id", "Date", "Sender", "Recipients", \
-        "Hashsum", "Algorithm", "Size")
+    headers = OutputTableHeader.GetFileList.value
     fileList = []
     for f in files:
         try:
