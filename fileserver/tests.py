@@ -1,5 +1,6 @@
 # todo: Проверить AdminDidNotCreated
 import time
+import random
 
 from django.test import TestCase
 
@@ -20,6 +21,12 @@ from fileserver.TestWorker.UserAdminControlTests import \
 from fileserver.TestWorker.FileOperationsTests import \
     TestFileCommands
 
+from fileserver.TestWorker.ChangePasswordByUserTest import \
+    TestChangePasswordByUser
+
+from fileserver.TestWorker.GetVersionTests import \
+    TestAdminGetVersion, TestUserGetVersion
+
 def TestScenario(format=None):
     login, password = TestServerInitialization(format)
     print("Login: \"{}\"; Password: \"{}\"".format(login, password))
@@ -28,6 +35,12 @@ def TestScenario(format=None):
     print("New password: \"{}\"".format(newPassword))
     usersAfterDelete = TestUserAdminControl(login, newPassword, format)
     TestFileCommands(usersAfterDelete, (login, newPassword), format)
+    randomUser = random.choice(tuple(usersAfterDelete.keys()))
+    randomUserNewPassword = TestChangePasswordByUser(\
+        randomUser, usersAfterDelete[randomUser], format)
+    TestAdminGetVersion(login, newPassword, format)
+    TestUserGetVersion(randomUser, randomUserNewPassword, format)
+
 
 
 class TestScenarioDefault(TestCase):

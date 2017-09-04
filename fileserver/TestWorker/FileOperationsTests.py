@@ -158,10 +158,6 @@ def UploadTestFiles(users):
     print("OK")
     return files
 
-def find_user_without_permission(users, file):
-    targetUsers = filter(lambda x: x not in file[2], users)
-    return random.choice(targetUsers)
-
 def TestAuthentification(format=None):
     print("TestFileOperationsAuthentification...", end="")
     userFunctionAdresses = ('fileserver:get_file_list',\

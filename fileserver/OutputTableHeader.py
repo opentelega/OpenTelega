@@ -11,3 +11,4 @@ class OutputTableHeader(Enum):
     GetFileList = ("Id", "Date", "Sender", "Recipients", "Hashsum", \
         "Algorithm", "Size")
     GetNumberOfFiles = ("FilesCount",)
+    GetVersion = ("Version",)

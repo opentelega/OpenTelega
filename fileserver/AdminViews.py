@@ -212,7 +212,7 @@ def admin_get_version(request):
         if (checkAdminCode != ResponseType.OK):
             return ResponseByType(checkAdminCode, request)
 
-        header = ("Version",)
+        header = OutputTableHeader.GetVersion.value
         data = (("1.0",),)
         outputTable = GenerateOutput(header, data, request)
 

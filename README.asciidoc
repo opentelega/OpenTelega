@@ -35,3 +35,11 @@ python manage.py migrate
 ----
 python manage.py runserver
 ----
+
+== Запуск тестирования ==
+Для запуска тестов сервера необходимо набрать следующую команду:
+
+[source, bash]
+----
+python manage.py test
+----

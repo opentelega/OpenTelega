@@ -45,7 +45,7 @@ def TestGetFileListByUser(users, files, format):
 
 
 def TestGetFilesNumber(users, files, format):
-    print("TestGetFileListByUser...", end="")
+    print("TestGetFilesNumber...", end="")
     adress = 'fileserver:get_files_count'
 
     randomUser = random.choice(tuple(users.keys()))

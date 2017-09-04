@@ -105,7 +105,7 @@ def user_get_version(request):
         if (getUserCode != ResponseType.OK):
             return ResponseByType(getUserCode, request)
 
-        header = ("Version",)
+        header = OutputTableHeader.GetVersion.value
         data = (("1.0",),)
         outputTable = GenerateOutput(header, data, request)
 
