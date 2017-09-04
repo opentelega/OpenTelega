@@ -11,9 +11,11 @@ from fileserver.CsvGenerator import GenerateCsvString
 from fileserver.ResponseWorker import ResponseType, ResponseByType
 from fileserver.HashCalc import get_salted_password
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 from fileserver.OptionWorker import UpdateOrCreateOption, GetOptionValue, \
-    PublicOptionKey, PrivateOptionKey, UpdateOption, OptionExists
+    PublicOptionKey, PrivateOptionKey, UpdateOption, OptionExists, \
+    CheckAdminOptionsAccessibility
 
 import base64
 import os
@@ -102,6 +104,10 @@ def ChangeAdminPasswordFromPostRequest(request):
     generatedSalt = generate_salt()
     hashedPass = get_salted_password(generatedSalt, newPassword)
 
+    accessibilityCode = CheckAdminOptionsAccessibility()
+    if (accessibilityCode != ResponseType.OK):
+        return accessibilityCode
+
     passCode = UpdateOrCreateOption(
         PrivateOptionKey.AdminHashedPassword, hashedPass, False)
     if (passCode != ResponseType.OK):
@@ -114,7 +120,6 @@ def ChangeAdminPasswordFromPostRequest(request):
 
     return ResponseType.OK
 
-# Todo: Журнал
 def CheckAdminFromPostRequest(request):
     try:
         userName = request.POST['adminUserName']
@@ -143,7 +148,7 @@ def CreateUserFromPostRequest(request):
 
 def GetUsersList(request):
     users = tuple((user.username,) for user in User.objects.all())
-    header = ("Username",)
+    header = OutputTableHeader.ListAllUsers.value
     return GenerateOutput(header, users, request)
 
 def ResetUserPasswordFromPostRequest(request):

@@ -1,6 +1,7 @@
 from fileserver.models import Option
 from fileserver.ResponseWorker import ResponseType
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 from enum import Enum
 
@@ -13,6 +14,27 @@ class PrivateOptionKey(Enum):
     AdminLogin = "admin_login"
     AdminHashedPassword = "admin_hashed_password"
     AdminSalt = "admin_salt"
+
+def CheckAdminOptionsAccessibility():
+    try:
+        adminLoginIsAccessible = Option.objects.get(\
+            name = PrivateOptionKey.AdminLogin.value).is_accessible
+
+        adminHashedPasswordIsAccessible = Option.objects.get(\
+            name=PrivateOptionKey.AdminHashedPassword.value).is_accessible
+
+        adminSaltIsAccessible = Option.objects.get(\
+            name=PrivateOptionKey.AdminSalt.value).is_accessible
+    except Exception:
+        ResponseType.CouldNotGetOption
+
+    isAccessible = adminLoginIsAccessible | \
+        adminHashedPasswordIsAccessible | adminSaltIsAccessible
+
+    if not (isAccessible):
+        return ResponseType.OK
+    else:
+        return ResponseType.PermissionDenied
 
 def OptionExists(optionName):
     try:
@@ -65,7 +87,7 @@ def UpdateOrCreateOption(optionName, optionValue, optionAccessible=True):
 
 def GetOptionList(request):
     options = Option.objects.filter(is_accessible=True)
-    header = ("Name", "Value")
+    header = OutputTableHeader.GetOptionList.value
     optionForTable = tuple((o.name, o.value) for o in options)
     return GenerateOutput(header, optionForTable, request)
 

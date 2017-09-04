@@ -9,6 +9,7 @@ from fileserver.UserWorker import GetUserFromPostRequest, \
 from fileserver.ResponseWorker import ResponseByType, ResponseType
 
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 @csrf_exempt
 def upload_file(request):
@@ -31,7 +32,7 @@ def upload_file(request):
         if (saveUploadedFileCode != ResponseType.OK):
             return ResponseByType(saveUploadedFileCode, request)
 
-        header = ("FileId",)
+        header = OutputTableHeader.UploadFile.value
         data = ((str(fileId),),)
         return HttpResponse(GenerateOutput(header, data, request))
     except Exception:
@@ -63,7 +64,7 @@ def get_files_count(request):
         if (getFilesCountCode != ResponseType.OK):
             return ResponseByType(getFilesCountCode, request)
 
-        header = ("FilesCount",)
+        header = OutputTableHeader.GetNumberOfFiles.value
         data = ((str(count),),)
         return HttpResponse(GenerateOutput(header, data, request))
     except Exception:
@@ -104,7 +105,7 @@ def user_get_version(request):
         if (getUserCode != ResponseType.OK):
             return ResponseByType(getUserCode, request)
 
-        header = ("Version",)
+        header = OutputTableHeader.GetVersion.value
         data = (("1.0",),)
         outputTable = GenerateOutput(header, data, request)
 

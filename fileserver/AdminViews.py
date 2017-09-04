@@ -15,6 +15,7 @@ from fileserver.OptionWorker import IsInitialized, GetOptionList, \
     ChangeOptionFromPostRequest
 
 from fileserver.ResponseFormatWorker import GenerateOutput
+from fileserver.OutputTableHeader import OutputTableHeader
 
 @csrf_exempt
 def initialize_server(request):
@@ -30,7 +31,7 @@ def initialize_server(request):
         if (generateAdminCode != ResponseType.OK):
             return ResponseByType(generateAdminCode, request)
 
-        header = ("AdminUsername", "AdminPassword")
+        header = OutputTableHeader.InitializeServer.value
         data = ((login, password),)
         outputTable = GenerateOutput(header, data, request)
 
@@ -64,7 +65,7 @@ def register_user(request):
         if (createUserCode != ResponseType.OK):
             return ResponseByType(createUserCode, request)
 
-        header = ("UserPassword",)
+        header = OutputTableHeader.RegisterUser.value
         data = ((password,),)
         outputTable = GenerateOutput(header, data, request)
 
@@ -84,7 +85,7 @@ def reset_user_password(request):
         if (resetUserPasswordCode != ResponseType.OK):
             return ResponseByType(resetUserPasswordCode, request)
 
-        header = ("UserPassword",)
+        header = OutputTableHeader.ResetUserPassword.value
         data = ((password,),)
         outputTable = GenerateOutput(header, data, request)
 
@@ -211,7 +212,7 @@ def admin_get_version(request):
         if (checkAdminCode != ResponseType.OK):
             return ResponseByType(checkAdminCode, request)
 
-        header = ("Version",)
+        header = OutputTableHeader.GetVersion.value
         data = (("1.0",),)
         outputTable = GenerateOutput(header, data, request)
 

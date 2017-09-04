@@ -21,7 +21,7 @@ OpenTelega — это сервер обмена файлами с открыты
 Логин и пароль у администратора регистрозависимые.
 После первоначальной настройки администратор может создавать пользователей.
 Команды отправляются на сервер посредством HTTP(S)-запросов.
-Все аргументы (параметры) команды передаются через метод _POST_, а название команды передаётся через метод _GET_.
+Все аргументы (параметры) команды передаются через метод _POST_.
 
 === Команды администратора ===
 Функции администратора предназначены для управления сервером.
@@ -37,7 +37,7 @@ OpenTelega — это сервер обмена файлами с открыты
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/initialize_server/", Да, "Название команды"
+Адрес, "fileserver/initialize_server/", Да, "Название команды"
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
 |===
 
@@ -80,7 +80,7 @@ curl -X POST http://127.0.0.1:8000/fileserver/initialize_server/
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/get_options_list/", Да, "Название команды"
+Адрес, "fileserver/get_options_list/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -149,7 +149,7 @@ curl -X POST -F "adminUserName=123" -F "adminPassword=456" -F "outputFormat=csv"
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/change_option/", Да, "Название команды"
+Адрес, "fileserver/change_option/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, optionName, Да, Название опции
@@ -217,7 +217,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=louq0nfigrtwowa4" -F 
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/change_admin_password/", Да, "Название команды"
+Адрес, "fileserver/change_admin_password/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, newAdminPassword, Да, Новый пароль
@@ -266,7 +266,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=louq0nfigrtwowa4" -F 
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/register_user/", Да, "Название команды"
+Адрес, "fileserver/register_user/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, usernameForRegistration, Да, Логин пользователя
@@ -314,7 +314,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" -F "usernameForReg
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/reset_user_password/", Да, "Название команды"
+Адрес, "fileserver/reset_user_password/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, usernameForResetPassword, Да, Логин пользователя
@@ -362,7 +362,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" -F "usernameForRes
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/delete_user/", Да, "Название команды"
+Адрес, "fileserver/delete_user/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, usernameForDelete, Да, Логин пользователя
@@ -408,7 +408,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" -F "usernameForDel
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/list_all_users/", Да, "Название команды"
+Адрес, "fileserver/list_all_users/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -451,7 +451,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" http://127.0.0.1:8
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/list_all_files/", Да, "Название команды"
+Адрес, "fileserver/list_all_files/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -502,7 +502,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" http://127.0.0.1:8
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/admin_download_file/", Да, "Название команды"
+Адрес, "fileserver/admin_download_file/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, targetId, Да, Идентификатор файла
@@ -576,7 +576,7 @@ $ cat file.bin
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/delete_file/", Да, "Название команды"
+Адрес, "fileserver/delete_file/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, targetId, Да, Идентификатор удаляемого файла
@@ -626,7 +626,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" -F "targetId=3" ht
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/clean_media_directory/", Да, "Название команды"
+Адрес, "fileserver/clean_media_directory/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -671,7 +671,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" http://127.0.0.1:8
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/admin_get_version/", Да, "Название команды"
+Адрес, "fileserver/admin_get_version/", Да, "Название команды"
 POST, adminUserName, Да, Логин администратора
 POST, adminPassword, Да, Пароль администратора
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -718,7 +718,7 @@ curl -X POST -F "adminUserName=64wyygtm" -F "adminPassword=1" http://127.0.0.1:8
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/fileserver/upload_file/", Да, "Название команды"
+Адрес, "fileserver/fileserver/upload_file/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, recipients, Да, "Логины адресатов, указанные через точку с запятой"
@@ -770,7 +770,7 @@ curl -X POST -F "uploadedFile=@file.bin" -F "userName=user" -F "password=123" -F
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/get_file_list/", Да, "Название команды"
+Адрес, "fileserver/get_file_list/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, startFromId, Нет, "Вывести файлы, идентификаторы которых больше указанного"
@@ -821,7 +821,7 @@ curl -X POST -F "userName=user" -F "password=1" http://127.0.0.1:8000/fileserver
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/download_file_by_id/", Да, "Название команды"
+Адрес, "fileserver/download_file_by_id/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, id, Да, Идентификатор файла
@@ -856,7 +856,7 @@ curl -D headers.txt -X POST -F "userName=user" -F "password=12345" -F "id=6" htt
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/change_user_password/", Да, "Название команды"
+Адрес, "fileserver/change_user_password/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, newPassword, Да, Новый пароль
@@ -905,7 +905,7 @@ curl -X POST -F "userName=user" -F "password=123" -F "newPassword=1" -F "outputF
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/get_files_count/", Да, "Название команды"
+Адрес, "fileserver/get_files_count/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -929,7 +929,7 @@ UnknownError, Неизвестная ошибка
 |===
 
 ===== Пример cURL запроса =====
-.Запрос (вывод в формате _XML_)
+.Запрос
 [source, bash]
 ----
 curl -X POST -F "userName=user" -F "password=1" http://127.0.0.1:8000/fileserver/get_files_count/
@@ -949,7 +949,7 @@ curl -X POST -F "userName=user" -F "password=1" http://127.0.0.1:8000/fileserver
 [format="csv", options="header"]
 |===
 Метод, Аргумент, Обязательное поле, Примечание
-GET, "fileserver/user_get_version/", Да, "Название команды"
+Адрес, "fileserver/user_get_version/", Да, "Название команды"
 POST, userName, Да, Логин пользователя
 POST, password, Да, Пароль пользователя
 POST, outputFormat, Нет, "Формат вывода ответа сервера"
@@ -1016,6 +1016,13 @@ python manage.py migrate
 python manage.py runserver
 ----
 
+=== Запуск тестирования ===
+Для запуска тестов сервера необходимо набрать следующую команду:
+
+[source, bash]
+----
+python manage.py test
+----
 
 [[server-errors]]
 === Коды завершения операции на сервере ===
@@ -1132,4 +1139,4 @@ CAUTION: При написании собственных мессенджеро
 Пример cURL-запроса с получением кода _HTTP_ приведён в <<admin_download_file, функции скачивания файла администратором>>.
 
 === У меня сервер вернул код _HTTP_ `500`. Что это значит? ===
-Проверьте адрес команды (параметр _GET_, в конце там должен быть "/" — слеш)
+Проверьте адрес команды (в конце там должен быть "/" — слеш)
